@@ -1,0 +1,449 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+body {
+    width: 100%; min-height: 100vh;
+    display: flex; justify-content: center; align-items: center;
+    background: radial-gradient(circle at center, #1a0a0a 0%, #050505 100%);
+    color: white; overflow-x: hidden;
+}
+
+/* Animations */
+.animate-in { animation: fadeInSlide 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+.animate-out { animation: fadeOutSlide 0.5s ease forwards; }
+
+@keyframes fadeInSlide {
+    0% { opacity: 0; transform: translateY(30px); filter: blur(10px); }
+    100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+
+@keyframes fadeOutSlide {
+    0% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 0; transform: translateY(-20px); filter: blur(5px); }
+}
+
+.payment-wrapper { 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    gap: 60px; 
+    z-index: 1; 
+    width: 95%; 
+    max-width: 1100px; 
+    flex-direction: row; /* <--- ADDED: Puts the card on the right */
+}
+
+/* 3D Card */
+.card-section { 
+    perspective: 1000px; 
+    flex-shrink: 0; /* <--- ADDED: Stops the card from squishing */
+    z-index: 1; 
+}
+
+.card-wrapper {
+    width: 400px;  /* <--- CHANGED: Set strict width so it holds its shape */
+    max-width: 100%;
+    height: 240px; 
+    position: relative;
+    transform-style: preserve-3d; 
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.card-wrapper.flip { transform: rotateY(180deg); }
+
+.card-face {
+    position: absolute; width: 100%; height: 100%;
+    backface-visibility: hidden; border-radius: 20px;
+    background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.1); padding: 25px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+}
+
+.card-front .chip { 
+    width: 50px; /* Bigger chip */
+    height: 35px; 
+    background: linear-gradient(135deg, #d4af37, #f1c40f); 
+    border-radius: 6px; 
+}
+.card-front .logo { 
+    align-self: flex-end; 
+    font-weight: 800; 
+    font-style: italic; 
+    font-size: 1.4rem; /* Bigger logo */
+    color: white; 
+}
+
+.card-front .number { 
+    font-size: 1.5rem; /* Bigger card numbers */
+    letter-spacing: 4px; 
+    margin: 20px 0; 
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8); 
+}
+.card-details { display: flex; justify-content: space-between; text-transform: uppercase; }
+.card-details span { 
+    font-size: 0.65rem; 
+    color: rgba(255,255,255,0.5); 
+    display: block; 
+}
+
+.card-details p { 
+    font-size: 0.95rem; /* Bigger name and expiry text */
+    font-weight: 600; 
+}
+
+.card-back { transform: rotateY(180deg); padding: 0; overflow: hidden; }
+.mag-strip { 
+    width: 100%; 
+    height: 50px; /* Thicker magnetic strip */
+    background: #111; 
+    margin-top: 30px; 
+}
+.signature-area { 
+    width: 80%; 
+    height: 40px; /* Taller signature box */
+    background: rgba(255,255,255,0.2); 
+    margin: 25px auto; 
+    display: flex; 
+    align-items: center; 
+    justify-content: flex-end; 
+    padding-right: 15px; 
+}
+.cvv-display { color: #000; font-weight: 800; font-style: italic; }
+
+/* REVISED: Removed blur to support asterisk masking */
+.hide-details { filter: none; opacity: 1; }
+
+/* Form */
+.auth-card { 
+    width: 440px; 
+    background: rgba(255, 255, 255, 0.03); 
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    border-radius: 20px; 
+    backdrop-filter: blur(25px); 
+    padding: 15px 35px 20px; 
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0; /* <--- ADDED: Stops form from squishing */
+    z-index: 2;     /* <--- ADDED: Keeps form on top if screen is too small */
+}
+.brand-title { display: block; text-align: center; font-size: 1.6rem; color: #ff4757; font-weight: 800; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; }
+.payment-nav { 
+    display: flex; 
+    background: rgba(255, 255, 255, 0.05); 
+    border-radius: 50px; 
+    margin: 8px 0 22px 0; /* 8px top, 0 sides, 22px bottom to give labels room */
+    padding: 5px; 
+}
+.nav-item { flex: 1; padding: 10px; font-size: 0.75rem; font-weight: 700; text-align: center; text-decoration: none; color: rgba(255, 255, 255, 0.4); border-radius: 50px; transition: 0.3s; }
+.nav-item.active { background: #ff4757; color: white; box-shadow: 0 0 20px rgba(255, 71, 87, 0.6); }
+
+.input-group { 
+    position: relative; 
+    height: 38px; /* Slightly thinner inputs */
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1); 
+    margin-bottom: 22px; /* Reduced from 22px to save vertical space */
+    display: flex; 
+    align-items: center; 
+}
+.input-group input { width: 100%; height: 100%; background: transparent; border: none; outline: none; color: #fff; padding-right: 30px; }
+.input-group label { position: absolute; left: 0; color: rgba(255, 255, 255, 0.5); transition: 0.3s; pointer-events: none; font-size: 0.8rem; }
+.input-group input:focus ~ label, .input-group input:not(:placeholder-shown) ~ label { top: -12px; color: #ff4757; font-size: 0.65rem; font-weight: 800; }
+
+/* REVISED: Ensure eye icons are clickable */
+.icon.toggle-eye { position: absolute; right: 0; color: rgba(255, 255, 255, 0.2); transition: 0.3s; cursor: pointer; pointer-events: auto; }
+.icon.toggle-eye:hover { color: #ff4757; text-shadow: 0 0 10px rgba(255, 71, 87, 0.8); }
+
+.form-row { display: flex; gap: 15px; }
+.form-row .input-group { flex: 1; }
+
+/* Buttons */
+.back-home, .btn-submit { display: flex; align-items: center; justify-content: center; background: linear-gradient(45deg, #ff4757, #ff6b81); border: none; border-radius: 50px; color: #fff; font-weight: 800; text-transform: uppercase; cursor: pointer; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+.btn-submit { 
+    width: 100%; 
+    height: 42px; /* Slightly shorter button */
+    margin-top: 0px; 
+}.btn-submit { 
+    width: 100%; 
+    height: 42px; /* Slightly shorter button */
+    margin-top: 0px; 
+}
+.back-home { position: fixed; top: 25px; left: 25px; padding: 10px 25px; font-size: 0.75rem; z-index: 100; text-decoration: none; }
+.back-home:hover, .btn-submit:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(255, 71, 87, 0.5); }
+
+/* NEW: Cancel Button Styling */
+.cancel-container { 
+    margin-top: 8px; /* Reduced from 15px */
+    text-align: center; 
+}
+.btn-cancel-small { background: transparent; border: none; color: rgba(255, 255, 255, 0.4); font-size: 0.7rem; font-weight: 600; text-transform: uppercase; cursor: pointer; transition: 0.3s; padding: 5px; }
+.btn-cancel-small:hover { color: #ff4757; transform: scale(1.05); }
+
+@media (max-height: 850px) {
+    .auth-card {
+        transform: scale(0.9);
+        transform-origin: center;
+    }
+    .card-wrapper {
+        transform: scale(0.85);
+    }
+    .payment-wrapper {
+        gap: 30px;
+    }
+}
+
+/* --- DATE PICKER & CVV ROW --- */
+
+/* Make the expiry input take up twice as much space as the CVV */
+.expiry-group {
+    flex: 2;
+}
+
+.cvv-group {
+    flex: 1;
+}
+
+/* Force the native browser calendar popup to match your dark theme */
+input[type="month"] {
+    color-scheme: dark;
+    cursor: pointer;
+}
+
+/* Force the label to stay floating at the top for the month picker 
+   because it always displays a default format (e.g., mm/yyyy) */
+.expiry-group label {
+    top: -12px;
+    color: #ff4757;
+    font-size: 0.65rem;
+    font-weight: 800;
+}
+
+/* --- CUSTOM FORM ROW SIZING --- */
+.phone-group { flex: 1; }
+.address-group { flex: 1; }
+.expiry-group { flex: 2; }
+.cvv-group { flex: 1; }
+
+/* --- NATIVE MONTH PICKER STYLING --- */
+/* Forces the calendar popup to match your dark background */
+input[type="month"] {
+    color-scheme: dark;
+    cursor: pointer;
+}
+
+/* Forces the label to stay at the top so it doesn't overlap the date text */
+.expiry-group label {
+    top: -12px;
+    color: #ff4757;
+    font-size: 0.65rem;
+    font-weight: 800;
+}
+
+/* This masks the numbers on the visual card when hidden */
+.hide-details {
+    filter: blur(5px);
+    letter-spacing: 5px;
+    user-select: none;
+    pointer-events: none;
+    transition: 0.3s ease;
+}
+
+#card-number-display, #display-cvv {
+    transition: 0.3s ease;
+}
+
+/* --- THE ERROR ALERT SPACE (Like Login Page) --- */
+#pay-error {
+    color: #ff4757;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 5px;   /* Small space below the last input */
+    margin-bottom: 10px; /* Space above the button */
+    min-height: 1.2rem; /* Keeps the card size stable when message appears */
+    transition: 0.3s ease;
+}
+
+/* --- ROW SPACING --- */
+.form-row { 
+    display: flex; 
+    gap: 15px; 
+    margin-bottom: 5px; /* Tighter rows to keep everything on one screen */
+}
+
+/* --- INPUT MARGINS --- */
+.input-group { 
+    margin-bottom: 22px; /* Increased slightly for better readability */
+}
+
+/* --- SHAKE ANIMATION FOR THE ALERT --- */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    75% { transform: translateX(6px); }
+}
+
+.error-shake {
+    animation: shake 0.2s ease-in-out 0s 2;
+}
+
+.card-front .chip { 
+    width: 45px; 
+    height: 32px; 
+    background: linear-gradient(135deg, #f1c40f 0%, #d4af37 40%, #f39c12 60%, #d4af37 100%); 
+    border-radius: 6px; 
+    position: relative;
+    border: 0.5px solid rgba(0,0,0,0.1);
+}
+
+/* Authentic Chip Circuitry Lines */
+.card-front .chip::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 0; width: 100%; height: 1px;
+    background: rgba(0,0,0,0.2);
+}
+
+/* --- SMART ADDRESS PICKER --- */
+.address-group { position: relative; }
+
+.picker-trigger {
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    transition: 0.3s;
+}
+.picker-trigger:hover { color: #ff4757 !important; filter: drop-shadow(0 0 5px #ff4757); }
+
+.address-picker {
+    position: absolute; top: 45px; right: 0; width: 220px;
+    background: rgba(15, 15, 15, 0.98); backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 71, 87, 0.4); border-radius: 12px;
+    display: none; flex-direction: column; z-index: 9999;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8); padding: 5px;
+}
+
+.address-picker.show { display: flex; animation: slideIn 0.2s ease-out; }
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.picker-option {
+    padding: 12px 15px; display: flex; align-items: center; gap: 12px;
+    cursor: pointer; border-radius: 8px; transition: 0.2s; color: white;
+}
+.picker-option i { color: #ff4757; width: 15px; text-align: center; }
+.picker-option span { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; }
+.picker-option:hover { background: rgba(255, 71, 87, 0.15); }
+
+/* --- PREVENT OVERLAP ON SMALLER SCREENS --- */
+@media (max-width: 992px) {
+    .payment-wrapper {
+        flex-direction: column !important; /* Stacks Card on top of Form */
+        gap: 40px;
+        padding-top: 80px;
+        height: auto;
+        overflow-y: auto;
+    }
+    .card-wrapper {
+        width: 100% !important;
+        max-width: 350px;
+        height: 210px;
+    }
+    .auth-card {
+        width: 95%;
+        max-width: 440px;
+        margin-bottom: 40px;
+    }
+}
+
+/* =========================================
+   GCASH SPECIFIC OVERRIDES
+   ========================================= */
+.gcash-theme {
+    background: linear-gradient(135deg, #0052cc, #007dfe) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+.gcash-theme .logo {
+    font-style: normal;
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+}
+.gcash-theme .chip { 
+    display: none; /* Hide gold chip for GCash */
+}
+
+/* Ensure 3 nav items fit perfectly side-by-side */
+.payment-nav { 
+    display: flex; 
+}
+.payment-nav .nav-item { 
+    flex: 1; 
+}
+
+/* --- 9. HIDE DETAILS (BLUR EFFECT) --- */
+.hide-details {
+    filter: blur(6px);
+    opacity: 0.8;
+    user-select: none;
+    pointer-events: none;
+    transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+/* --- BULLETPROOF ICON ALIGNMENT (Overrides Bootstrap) --- */
+.input-group .icon { 
+    position: absolute !important; 
+    right: 10px !important; 
+    top: 0 !important; 
+    bottom: 0 !important;
+    height: 100% !important; 
+    display: flex !important; 
+    align-items: center !important; 
+    justify-content: center !important;
+    transform: none !important; 
+    margin: 0 !important;
+    padding: 0 !important;
+    color: rgba(255, 255, 255, 0.2); 
+    pointer-events: none; 
+    z-index: 10;
+}
+
+.input-group .icon.toggle-eye, 
+.input-group .icon.picker-trigger { 
+    pointer-events: auto !important; 
+    cursor: pointer !important; 
+    transition: 0.3s; 
+}
+
+.input-group .icon.toggle-eye:hover, 
+.input-group .icon.picker-trigger:hover { 
+    color: #ff4757; 
+}
+
+/* Ensure text doesn't type under the icon */
+.input-group input { 
+    padding-right: 35px !important; 
+}
+
+/* --- GCASH SPECIFIC LAYOUT FIXES --- */
+.mpin-text-group {
+    border-bottom: none !important;
+    position: relative;
+}
+
+.mpin-helper-text {
+    font-size: 0.65rem; 
+    color: rgba(255,255,255,0.5); 
+    position: absolute; 
+    bottom: 8px;
+}
+
+.gcash-btn {
+    background: linear-gradient(45deg, #0052cc, #007dfe); 
+    box-shadow: 0 5px 15px rgba(0, 125, 254, 0.3);
+}
+.gcash-btn:hover {
+    box-shadow: 0 10px 20px rgba(0, 125, 254, 0.5) !important;
+}
+

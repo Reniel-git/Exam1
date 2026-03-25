@@ -1,0 +1,214 @@
+/* 1. RESET & LAYOUT LOCK */
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    font-family: 'Poppins', sans-serif; 
+}
+
+body {
+    width: 100vw; 
+    height: 100vh;
+    overflow: hidden !important;
+    background: #0a0a0a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100vw;
+    overflow: hidden; 
+}
+
+/* --- KEYFRAMES --- */
+@keyframes pageReveal {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes brandFade {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes cardFadeIn {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* fadePulse REMOVED to stop the pulsing effect */
+
+.slider-box {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 40px;
+    display: flex;
+    flex-direction: column;
+    animation: pageReveal 1s ease-out forwards;
+}
+
+/* 2. BEST OFFERS BADGE */
+.offers-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: fit-content;
+    margin: 0 auto 20px;
+    background: rgba(255, 71, 87, 0.1);
+    border: 1px solid rgba(255, 71, 87, 0.3);
+    padding: 10px 24px;
+    border-radius: 50px;
+    color: #ff4757;
+    font-size: 1rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.offers-badge::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background-color: #ff4757;
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(255, 71, 87, 0.7); }
+    70% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(255, 71, 87, 0); }
+    100% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(255, 71, 87, 0); }
+}
+
+/* 3. NAVIGATION ARROWS */
+.nav-btn {
+    position: absolute;
+    top: 55%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background: #ff4757;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 100;
+    transition: 0.3s;
+    box-shadow: 0 10px 20px rgba(255, 71, 87, 0.4);
+}
+
+.nav-btn:hover:not(.disabled) { background: white; color: #ff4757; }
+.prev { left: 10px; }
+.next { right: 10px; }
+
+.nav-btn.disabled {
+    background: #333 !important; 
+    color: #777 !important;
+    cursor: not-allowed !important;
+    pointer-events: none !important; 
+    opacity: 0.6;
+}
+
+/* 4. SWIPER & SLIDES (Restored Original Blur/Zoom) */
+.swiper { width: 100%; padding: 40px 0; }
+
+.swiper-slide {
+    width: 320px;
+    filter: blur(4px) brightness(0.6);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0.5;
+    transform: scale(0.8);
+    will-change: transform, opacity;
+}
+
+.swiper-slide-active {
+    filter: blur(0) brightness(1);
+    opacity: 1;
+    transform: scale(1.1);
+    z-index: 10;
+}
+
+/* 5. FOOD CARD DESIGN */
+.food-card {
+    background: white;
+    border-radius: 40px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    position: relative;
+    animation: cardFadeIn 0.8s ease-out forwards;
+    backface-visibility: hidden;
+}
+
+/* FIXED: Animation now only performs the initial Fade In */
+.swiper-slide-active .food-card {
+    animation: cardFadeIn 0.8s ease-out forwards;
+}
+
+.food-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.tag {
+    position: absolute; top: 25px; left: 25px;
+    padding: 6px 15px; border-radius: 12px; font-weight: 800; font-size: 0.75rem; color: white;
+}
+.gold { background: #ffa502; }
+.red { background: #ff4757; }
+
+.details h3 { font-size: 1.4rem; margin-bottom: 8px; color: #1e272e; }
+.details p { font-size: 0.85rem; color: #7f8c8d; line-height: 1.4; margin-bottom: 15px; }
+.price { font-size: 1.3rem; font-weight: 800; color: #ff4757; }
+
+.view-more-container { 
+    display: flex; 
+    justify-content: center; 
+    margin-top: 20px; 
+}
+
+.view-more-btn {
+    display: inline-block;
+    text-decoration: none;
+    background: #ff4757;
+    color: white !important;
+    padding: 18px 45px;
+    border-radius: 50px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(255, 71, 87, 0.3);
+    opacity: 0;
+    animation: cardFadeIn 1s ease forwards;
+    animation-delay: 0.5s;
+}
+
+.view-more-btn:hover {
+    background: #ff6b81;
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(255, 71, 87, 0.5);
+}
+
+.brand-label {
+    position: fixed;
+    top: 2px;
+    left: 4%;
+    z-index: 2500;
+    color: #ff4757;
+    font-weight: 800;
+    font-size: 1.6rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    user-select: none;
+    cursor: default;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Login - Hungry Bar</title>
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <a href="dashboard.html" class="back-home">Back Home</a>
+
+    <div class="auth-card animate-in">
+        <a href="index.html" class="brand-title">Hungry Bar</a>
+        <h2>Login</h2>
+
+        <div class="input-group">
+            <input type="email" id="loginEmail" placeholder=" " required>
+            <label>Email Address</label>
+            <span class="icon"><i class="fas fa-envelope"></i></span>
+        </div>
+
+        <div class="input-group">
+            <input type="password" id="loginPass" placeholder=" " required 
+                   oninput="toggleEyeVisibility('loginPass','loginEye')">
+            <label>Password</label>
+            <span class="toggle-password eye" id="loginEye" onclick="togglePassword('loginPass', this)" style="display:none;">
+                <i class="fa-solid fa-eye-slash"></i>
+            </span>
+        </div>
+
+        <div class="form-helper">
+            <a href="forgot.html" class="forgot-link">Forgot Password?</a>
+        </div>
+
+        <div id="loginError" class="error-message"></div>
+        <button class="btn-submit" onclick="loginUser()">Login</button>
+        
+        <div class="auth-footer">
+            <p>Don't have an account? <a href="register.html">Register</a></p>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

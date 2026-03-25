@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Reset Password - Hungry Bar</title>
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <a href="dashboard.html" class="back-home">Back Home</a>
+
+    <div class="auth-card animate-in">
+        <a href="index.html" class="brand-title">Hungry Bar</a>
+        <h2>Reset Password</h2>
+        <p class="subtitle">Enter your new password and confirm it below.</p>
+
+        <div class="input-group">
+            <input type="password" id="newPassword" placeholder=" " required 
+                   oninput="toggleEyeVisibility('newPassword','newEye')">
+            <label>New Password</label>
+            <span class="toggle-password eye" id="newEye" onclick="togglePassword('newPassword', this)" style="display:none;">
+                <i class="fa-solid fa-eye-slash"></i>
+            </span>
+        </div>
+
+        <div class="input-group">
+            <input type="password" id="confirmPassword" placeholder=" " required 
+                   oninput="toggleEyeVisibility('confirmPassword','confirmEye')">
+            <label>Confirm Password</label>
+            <span class="toggle-password eye" id="confirmEye" onclick="togglePassword('confirmPassword', this)" style="display:none;">
+                <i class="fa-solid fa-eye-slash"></i>
+            </span>
+        </div>
+
+        <div id="resetError" class="error-message"></div>
+
+        <button class="btn-submit" onclick="resetPassword()">Reset Password</button>
+
+        <div class="auth-footer">
+            <p>Remembered? <a href="login.html">Back to Login</a></p>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

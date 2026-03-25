@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+body {
+    width: 100%; height: 100vh;
+    display: flex; justify-content: center; align-items: center;
+    background: radial-gradient(circle at center, #1a0a0a 0%, #050505 100%);
+    color: white; overflow: hidden;
+}
+
+.auth-card {
+    width: 400px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    padding: 35px 40px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+.brand-title {
+    display: block; font-size: 1.8rem; color: #ff4757; font-weight: 800;
+    text-decoration: none; text-transform: uppercase; letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+h2 { font-size: 1.4rem; margin-bottom: 20px; font-weight: 600; }
+.subtitle { font-size: 0.85rem; color: rgba(255,255,255,0.6); margin-bottom: 20px; }
+
+/* Input Groups */
+.input-group {
+    position: relative; width: 100%; height: 45px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+    margin-bottom: 25px;
+}
+
+.input-group input {
+    width: 100%; height: 100%; background: transparent;
+    border: none; outline: none; color: #fff; font-size: 1rem;
+    padding: 0 35px 0 5px;
+}
+
+.input-group label {
+    position: absolute; left: 5px; top: 50%; transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.5); transition: 0.3s; pointer-events: none;
+}
+
+.input-group input:focus ~ label,
+.input-group input:not(:placeholder-shown) ~ label {
+    top: -10px; color: #ff4757; font-size: 0.75rem; font-weight: 800;
+}
+
+.input-group input:focus { border-bottom: 2px solid #ff4757; }
+
+/* Icons */
+.icon, .toggle-password {
+    position: absolute; right: 5px; top: 50%; transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.3); font-size: 1.1rem; cursor: pointer;
+}
+
+.toggle-password:hover { color: #ff4757; }
+
+/* Buttons & Helpers */
+.btn-submit {
+    width: 100%; height: 48px; background: linear-gradient(45deg, #ff4757, #ff6b81);
+    border: none; border-radius: 50px; color: #fff; font-weight: 800;
+    text-transform: uppercase; cursor: pointer; transition: 0.3s;
+    box-shadow: 0 5px 15px rgba(255, 71, 87, 0.3); margin-top: 10px;
+}
+
+.btn-submit:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(255, 71, 87, 0.5); }
+
+.form-helper { display: flex; justify-content: flex-end; margin-bottom: 15px; }
+.forgot-link { color: #ff4757; text-decoration: none; font-size: 0.85rem; font-weight: 700; }
+
+.auth-footer { margin-top: 20px; font-size: 0.85rem; }
+.auth-footer a { color: #ff4757; text-decoration: none; font-weight: 700; }
+
+.error-message { color: #ff4757; font-size: 0.75rem; min-height: 20px; margin-bottom: 10px; }
+
+.back-home {
+    position: fixed; 
+    top: 25px;
+    left: 25px;
+    text-decoration: none;
+    /* Uses your exact glowing gradient */
+    background: linear-gradient(45deg, #ff4757, #ff6b81);
+    color: white;
+    padding: 10px 25px;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    z-index: 1000;
+    /* Matches the glowing shadow of your btn-submit */
+    box-shadow: 0 5px 15px rgba(255, 71, 87, 0.4); 
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.back-home:hover {
+    background: linear-gradient(45deg, #ff6b81, #ff4757);
+    transform: translateY(-3px);
+    /* Intensifies glow on hover */
+    box-shadow: 0 10px 25px rgba(255, 71, 87, 0.6);
+    color: white;
+}
+
+#loginError,
+#regError,
+#forgotError,
+#resetError,
+.error-message {
+    font-size: 0.9rem;          /* Increased from 12px */
+    margin-top: 10px;           /* More space above the error */
+    margin-bottom: 10px;        /* Space below the error */
+    font-weight: 700;           /* Makes it Bold */
+    color: #ff4757;             /* Keeping your Hungry Bar red */
+    text-align: center;         /* Centers the text */
+    text-shadow: 0 0 10px rgba(255, 71, 87, 0.3); /* Adds a slight glow */
+    min-height: 25px;           /* Prevents the card from jumping when error appears */
+    display: block;
+    width: 100%;
+}
+
+@keyframes fadeInSlide {
+    0% { 
+        opacity: 0; 
+        transform: translateY(20px); 
+        filter: blur(10px); 
+    }
+    100% { 
+        opacity: 1; 
+        transform: translateY(0); 
+        filter: blur(0); 
+    }
+}
+
+/* Smooth Fade Out: Slides up slightly and disappears */
+@keyframes fadeOutSlide {
+    0% { 
+        opacity: 1; 
+        transform: translateY(0); 
+        filter: blur(0);
+    }
+    100% { 
+        opacity: 0; 
+        transform: translateY(-20px); 
+        filter: blur(10px); 
+    }
+}
+
+/* --- PAYMENT-STYLE ERROR SHAKE --- */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    75% { transform: translateX(6px); }
+}
+
+.error-shake {
+    display: block !important;
+    animation: shake 0.2s ease-in-out 0s 2;
+    color: #ff4757 !important;
+    font-weight: 700;
+}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Hungry Bar | Contact</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body class="contact-page">
+
+    <header class="main-header">
+        <div class="brand-label">
+            <a href="dashboard.html">Hungry <span>Bar</span></a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="dashboard.html">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+        </nav>
+            <div class="nav-actions">
+        <a href="cart.html" class="cart-btn">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-count">0</span>
+        </a>
+        <a href="login.html" class="btn-login">Login</a>
+        <a href="user.html" class="btn-profile" style="display: none;"><i class="fas fa-user"></i></a>
+    </div>
+    </header>
+
+    <main class="split-container">
+        <div class="info-side">
+            <span class="section-subtitle">SAY HELLO</span>
+            <h1>Get in <span>Touch</span></h1>
+            
+                <form class="contact-form" id="contactForm" novalidate>
+            
+            <div class="input-group">
+                <input type="text" id="contactName" placeholder=" " required>
+                <label>Your Name</label>
+            </div>
+
+            <div class="input-group">
+                <input type="email" id="contactEmail" placeholder=" " required>
+                <label>Email Address</label>
+            </div>
+
+            <div class="input-group textarea-group">
+                <textarea id="contactMessage" placeholder=" " rows="4" required></textarea>
+                <label>How can we help?</label>
+            </div>
+            
+            <div id="contactError" class="error-message"></div>
+            
+            <button type="submit" class="btn-primary" id="contactBtn">Send Message</button>
+        </form>
+        </div>
+
+        <div class="contact-details">
+            <div class="detail-card">
+                <i class="fas fa-map-marker-alt"></i>
+                <div><h3>Location</h3><p>Riverside, Abar 1st, San Jose City, Nueva Ecija, PH</p></div>
+            </div>
+            <div class="detail-card">
+                <i class="fas fa-phone"></i>
+                <div><h3>Phone</h3><p>+63 993 067 9752</p></div>
+            </div>
+            <div class="social-links">
+                <a href="https://www.facebook.com/Reniel.GV" class="social-icon facebook">
+                    <span class="tooltip">Facebook</span>
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                
+                <a href="https://www.instagram.com/renielgv" class="social-icon instagram">
+                    <span class="tooltip">Instagram</span>
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+        </div>
+    </main>
+    <script src="js/script.js"></script>
+</body>
+</html>

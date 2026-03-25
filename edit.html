@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Hungry Bar | Edit Profile</title>
+    <link rel="stylesheet" href="css/edit.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <a href="user.html" class="back-btn">BACK HOME</a>
+
+    <div class="edit-page-container">
+        <main class="auth-card">
+            
+            <div class="brand-header">
+                <a href="index.html" class="brand-title">Hungry Bar</a>
+                <p class="subtitle">Update Your Profile & Location</p>
+            </div>
+            
+            <form id="editProfileForm" novalidate>
+                
+                <p class="section-label">Personal Details</p>
+                <div class="form-row">
+                    <div class="input-group">
+                        <input type="text" id="edit-fname" placeholder=" " required>
+                        <label>First Name</label>
+                        <i class="fas fa-user icon"></i>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" id="edit-mname" placeholder=" ">
+                        <label>Middle Name (Optional)</label>
+                        <i class="fas fa-id-card icon"></i>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="input-group">
+                        <input type="text" id="edit-lname" placeholder=" " required>
+                        <label>Last Name</label>
+                        <i class="fas fa-user icon"></i>
+                    </div>
+
+                    <div class="input-group gender-custom-group" id="genderDropdown">
+                        <input type="hidden" id="edit-gender" value="">
+                        <div class="dropdown-selected" onclick="toggleCustomDropdown()">
+                            <span id="selected-gender-text">Select Gender</span>
+                            <i class="fas fa-venus-mars icon" id="main-gender-icon"></i>
+                        </div>
+                        <label class="static-label">Gender</label>
+                        
+                        <ul class="dropdown-options">
+                            <li onclick="selectGender('Male', 'fa-mars')"><i class="fas fa-mars"></i> Male</li>
+                            <li onclick="selectGender('Female', 'fa-venus')"><i class="fas fa-venus"></i> Female</li>
+                            <li onclick="selectGender('Others', 'fa-transgender')"><i class="fas fa-transgender"></i> Others</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="input-group birthdate-group">
+                        <input type="date" id="edit-birthdate" required>
+                        <label>Birthdate</label>
+                    </div>
+                    <div class="input-group">
+                        <input type="tel" id="edit-phone" placeholder=" " required>
+                        <label>Phone Number</label>
+                        <i class="fas fa-phone icon"></i>
+                    </div>
+                </div>
+
+                <p class="section-label">Delivery Address</p>
+                <div class="input-group address-group">
+                    <input type="text" id="edit-address" placeholder=" " required>
+                    <label>Full Delivery Address</label>
+                    <i class="fas fa-map-marker-alt icon"></i>
+                    <button type="button" class="location-btn" onclick="getLiveLocation()">LIVE LOCATION</button>
+                </div>
+
+                <p id="error-message"></p>
+
+                <button type="submit" class="btn-submit">Save Changes</button>
+            </form>
+
+            <div class="auth-footer">
+                <a href="user.html" class="cancel-link">Cancel and Return</a>
+            </div>
+
+        </main>
+    </div>
+    
+    <script src="js/script.js"></script>
+</body>
+</html>

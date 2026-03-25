@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Hungry Bar | Card Payment</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/payment.css">
+</head>
+<body>
+    <a href="dashboard.html" class="back-home" onclick="navigateWithTransition('dashboard.html')">Back Home</a>
+
+    <div class="payment-wrapper animate-in" id="main-wrapper">
+        
+        <div class="card-section">
+            <div class="card-wrapper" id="card-wrapper">
+                <div class="card-face card-front">
+                    <div class="chip"></div>
+                    <div class="logo">VISA</div>
+                    <div class="number hide-details" id="card-number-display">**** **** **** ****</div>
+                    <div class="card-details">
+                        <div>
+                            <span>Card Holder</span>
+                            <p id="display-name">NAME</p>
+                        </div>
+                        <div>
+                            <span>Expires</span>
+                            <p id="display-date">MM/YY</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-face card-back">
+                    <div class="mag-strip"></div>
+                    <div class="signature-area">
+                        <div class="cvv-display hide-details" id="display-cvv">***</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <main class="auth-card">
+            <a href="index.html" class="brand-title">Hungry Bar</a>
+            
+            <nav class="payment-nav">
+                <a href="payment1.html" class="nav-item active">Card</a>
+                <a href="payment2.html" class="nav-item">COD</a>
+                <a href="payment3.html" class="nav-item">GCash</a>
+            </nav>
+
+            <form id="pay-form" novalidate>
+                <div class="form-row">
+                    <div class="input-group">
+                        <input type="text" id="first-name" placeholder=" " required>
+                        <label>First Name</label>
+                        <i class="fas fa-user icon"></i>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" id="last-name" placeholder=" " required>
+                        <label>Last Name</label>
+                        <i class="fas fa-user icon"></i>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <input type="text" id="middle-name" placeholder=" ">
+                    <label>Middle Name (Optional)</label>
+                    <i class="fas fa-user-tag icon"></i>
+                </div>
+
+                <div class="form-row">
+                    <div class="input-group phone-group">
+                        <input type="tel" id="phone-number" placeholder=" " required maxlength="11">
+                        <label>Phone</label>
+                        <i class="fas fa-phone icon"></i>
+                    </div>
+
+                    <div class="input-group address-group">
+                        <input type="text" id="delivery-address" placeholder=" " required autocomplete="off">
+                        <label>Delivery Address</label>
+                        <i class="fas fa-map-marker-alt icon picker-trigger" onclick="toggleAddressPicker(event)"></i>
+                        
+                        <div class="address-picker" id="addressPicker">
+                            <div class="picker-option" id="saved-address-option" onclick="selectAddress('saved')">
+                                <i class="fas fa-home"></i>
+                                <span>Use Saved Address</span>
+                            </div>
+                            <div class="picker-option" onclick="selectAddress('live')">
+                                <i class="fas fa-location-arrow"></i>
+                                <span id="live-text">Live Location</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <input type="text" id="card-hold-name" placeholder=" " required>
+                    <label>Name on Card</label>
+                    <i class="fas fa-id-card icon"></i>
+                </div>
+
+                <div class="input-group">
+                    <input type="password" id="input-card" required maxlength="19" placeholder=" ">
+                    <label>Card Number</label>
+                    <i class="fas fa-eye-slash icon toggle-eye" id="eye-card"></i>
+                </div>
+                
+                <div class="form-row">
+                    <div class="input-group expiry-group">
+                        <input type="month" id="input-expiry" required>
+                        <label>Exp Date</label>
+                    </div>
+                    
+                    <div class="input-group cvv-group">
+                        <input type="password" id="input-cvv" placeholder=" " required maxlength="3">
+                        <label>CVV</label>
+                        <i class="fas fa-eye-slash icon toggle-eye" id="eye-cvv"></i>
+                    </div>
+                </div>
+
+                <p id="pay-error"></p>
+
+                <button type="submit" class="btn-submit">Confirm Payment</button>
+                
+                <div class="cancel-container">
+                    <button type="button" class="btn-cancel-small" onclick="navigateWithTransition('cart.html')">Cancel</button>
+                </div>
+            </form>
+        </main>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

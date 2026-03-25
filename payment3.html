@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Hungry Bar | GCash Payment</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/payment.css">
+</head>
+<body>
+    <a href="dashboard.html" class="back-home" onclick="navigateWithTransition('dashboard.html')">Back Home</a>
+
+    <div class="payment-wrapper animate-in" id="main-wrapper">
+        
+        <main class="auth-card">
+            <a href="index.html" class="brand-title">Hungry Bar</a>
+            
+            <nav class="payment-nav">
+                <a href="payment1.html" class="nav-item">Card</a>
+                <a href="payment2.html" class="nav-item">COD</a>
+                <a href="payment3.html" class="nav-item active">GCash</a>
+            </nav>
+
+            <form id="pay-form" novalidate>
+                <div class="form-row">
+                    <div class="input-group">
+                        <input type="text" id="first-name" placeholder=" " required>
+                        <label>First Name</label>
+                        <i class="fas fa-user icon"></i>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" id="last-name" placeholder=" " required>
+                        <label>Last Name</label>
+                        <i class="fas fa-user icon"></i>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <input type="text" id="middle-name" placeholder=" ">
+                    <label>Middle Name (Optional)</label>
+                    <i class="fas fa-user-tag icon"></i>
+                </div>
+
+                <div class="form-row">
+                    <div class="input-group phone-group">
+                        <input type="tel" id="phone-number" placeholder=" " required maxlength="11">
+                        <label>Phone</label>
+                        <i class="fas fa-phone icon"></i>
+                    </div>
+
+                    <div class="input-group address-group">
+                        <input type="text" id="delivery-address" placeholder=" " required autocomplete="off">
+                        <label>Delivery Address</label>
+                        <i class="fas fa-map-marker-alt icon picker-trigger" onclick="toggleAddressPicker(event)"></i>
+                        
+                        <div class="address-picker" id="addressPicker">
+                            <div class="picker-option" id="saved-address-option" onclick="selectAddress('saved')">
+                                <i class="fas fa-home"></i>
+                                <span>Use Saved Address</span>
+                            </div>
+                            <div class="picker-option" onclick="selectAddress('live')">
+                                <i class="fas fa-location-arrow"></i>
+                                <span id="live-text">Live Location</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <input type="password" id="gcash-number" required maxlength="11" placeholder=" ">
+                    <label>GCash Number</label>
+                    <i class="fas fa-eye-slash icon toggle-eye" id="eye-gcash" onclick="toggleGcashVisibility()"></i>
+                </div>
+                
+                <div class="form-row">
+                    <div class="input-group expiry-group mpin-text-group">
+                        <span class="mpin-helper-text">
+                            Your MPIN is secure and not saved.
+                        </span>
+                    </div>
+                    
+                    <div class="input-group cvv-group">
+                        <input type="password" id="input-mpin" placeholder=" " required maxlength="4">
+                        <label>4-Digit MPIN</label>
+                        <i class="fas fa-eye-slash icon toggle-eye" id="eye-mpin" onclick="toggleGcashVisibility()"></i>
+                    </div>
+                </div>
+
+                <p id="pay-error"></p>
+
+                <button type="submit" class="btn-submit gcash-btn">
+                    Pay via GCash
+                </button>
+                
+                <div class="cancel-container">
+                    <button type="button" class="btn-cancel-small" onclick="navigateWithTransition('cart.html')">Cancel</button>
+                </div>
+            </form>
+        </main>
+
+        <div class="card-section">
+            <div class="card-wrapper" id="card-wrapper">
+                <div class="card-face card-front gcash-theme">
+                    <div class="logo">GCash</div>
+                    <div class="number hide-details" id="gcash-display" style="letter-spacing: 2px;">09** **** ***</div>
+                    <div class="card-details">
+                        <div>
+                            <span>Account Name</span>
+                            <p id="display-name">NAME</p>
+                        </div>
+                        <div>
+                            <span>Status</span>
+                            <p>Verified</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-face card-back gcash-theme">
+                    <div class="mag-strip"></div>
+                    <div class="signature-area">
+                        <div class="cvv-display hide-details" id="display-mpin" style="font-size: 1.2rem; letter-spacing: 5px;">****</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

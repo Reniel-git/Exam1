@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Your Cart - Hungry Bar</title>
+    <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <a href="menu.html" class="back-home"> Back to Menu </a>
+
+    <div id="main-wrapper" class="animate-in">
+        <div class="auth-card cart-card">
+            <div class="cart-brand">
+                Hungry <span>Cart</span>
+            </div>
+            <div class="nav-actions"></div>
+            <div class="cart-items-container">
+                <div class="cart-table-header">
+                    <span>Item</span>
+                    <span class="text-center">Qty</span>
+                    <span class="text-right">Price</span>
+                </div>
+
+                <div id="dynamic-cart-list">
+                    </div>
+            </div>
+
+            <div class="cart-summary-section">
+                <div class="total-row">
+                    <span class="total-label">Total Amount:</span>
+                    <span class="total-price" id="cart-total-display">₱0</span>
+                </div>
+                <button class="btn-submit checkout-btn" onclick="window.location.href='payment1.html'">
+                    Proceed to Checkout
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

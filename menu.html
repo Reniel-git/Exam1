@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Hungry Bar | Menu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body class="menu-page compact-view">
+
+    <input type="checkbox" id="cart-toggle" style="display: none;">
+
+    <header class="main-header">
+        <div class="brand-label">
+            <a href="dashboard.html">Hungry <span>Bar</span></a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="dashboard.html">Home</a></li>
+                <li><a href="menu.html" class="active">Menu</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+
+        <div class="nav-actions">
+            <a href="#" class="cart-btn" onclick="document.getElementById('cart-toggle').checked = true; return false;">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </a>
+            <a href="login.html" class="btn-login">Login</a>
+            <a href="user.html" class="btn-profile" id="nav-profile-btn" style="display: none;"><i class="fas fa-user"></i></a>
+        </div>
+    </header>
+    
+    <main class="menu-container">
+        <div class="menu-grid">
+            
+            <div class="food-card" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="tag gold">Best Seller</div>
+                        <div class="food-img"><img src="Images/burger.jpg" alt="Burger"></div>
+                        <div class="details"><h3>Monster Burger</h3><p>Beef & Bacon</p></div>
+                        <div class="food-footer">
+                            <span class="price">₱100</span>
+                            <button class="add-btn" onclick="event.stopPropagation(); addToCart(event, 'Monster Burger', 100, 'Images/burger.jpg')">+</button>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <h3>Monster Burger</h3>
+                        <p>Double beef patty, crispy bacon, and melted cheddar with our signature secret sauce.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="food-card" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="food-img"><img src="Images/classic burger.jpg" alt="Classic"></div>
+                        <div class="details"><h3>Classic Burger</h3><p>Fresh Veggies</p></div>
+                        <div class="food-footer">
+                            <span class="price">₱80</span>
+                            <button class="add-btn" onclick="event.stopPropagation(); addToCart(event, 'Classic Burger', 80, 'Images/classic burger.jpg')">+</button>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <h3>Classic Burger</h3>
+                        <p>Traditional grilled beef patty served with farm-fresh lettuce, tomatoes, and classic mayo.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="food-card" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="tag gold">Best Seller</div>
+                        <div class="food-img"><img src="Images/classic pizza.jpg" alt="Pizza"></div>
+                        <div class="details"><h3>Classic Pizza</h3><p>Mozzarella</p></div>
+                        <div class="food-footer">
+                            <span class="price">₱300</span>
+                            <button class="add-btn" onclick="event.stopPropagation(); addToCart(event, 'Classic Pizza', 300, 'Images/classic pizza.jpg')">+</button>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <h3>Classic Pizza</h3>
+                        <p>Hand-tossed dough with premium Italian mozzarella, tomato base, and fresh basil leaves.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="food-card" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="food-img"><img src="Images/overload pizza.jpg" alt="Pizza"></div>
+                        <div class="details"><h3>Overload Pizza</h3><p>Triple Meat</p></div>
+                        <div class="food-footer">
+                            <span class="price">₱420</span>
+                            <button class="add-btn" onclick="event.stopPropagation(); addToCart(event, 'Overload Pizza', 420, 'Images/overload pizza.jpg')">+</button>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <h3>Overload Pizza</h3>
+                        <p>A meat lover's dream! Loaded with pepperoni, ham, beef, and a mountain of extra cheese.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="food-card" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="tag red">5% OFF</div>
+                        <div class="food-img"><img src="Images/creamy pasta.jpg" alt="Pasta"></div>
+                        <div class="details"><h3>Creamy Pasta</h3><p>White Sauce</p></div>
+                        <div class="food-footer">
+                            <span class="price"><small style="text-decoration: line-through; opacity: 0.5;">₱120</small> ₱115</span>
+                            <button class="add-btn" onclick="event.stopPropagation(); addToCart(event,'Creamy Pasta', 115, 'Images/creamy pasta.jpg')">+</button>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <h3>Creamy Pasta</h3>
+                        <p>Indulgent white sauce carbonara tossed with mushroom bits and aged Parmesan cheese.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="food-card" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="food-img"><img src="Images/classic pasta.jpg" alt="Pasta"></div>
+                        <div class="details"><h3>Classic Pasta</h3><p>Bolognese</p></div>
+                        <div class="food-footer">
+                            <span class="price">₱80</span>
+                            <button class="add-btn" onclick="event.stopPropagation(); addToCart(event, 'Classic Pasta', 80, 'Images/classic pasta.jpg')">+</button>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <h3>Classic Pasta</h3>
+                        <p>Rich, slow-cooked bolognese sauce made with savory minced beef and garden-fresh herbs.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="food-card" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="tag red">BOGO</div>
+                        <div class="food-img"><img src="Images/icetea.jpg" alt="Tea"></div>
+                        <div class="details"><h3>Ice Tea</h3><p>Lemon Blend</p></div>
+                        <div class="food-footer">
+                            <span class="price">₱150</span>
+                            <button class="add-btn" onclick="event.stopPropagation(); addToCart(event, 'Ice Tea', 150, 'Images/icetea.jpg')">+</button>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <h3>Ice Tea</h3>
+                        <p>Our signature house-blend lemon tea, brewed fresh and served ice-cold.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="food-card" onclick="this.classList.toggle('flipped')">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="food-img"><img src="Images/coke.jpg" alt="Coke"></div>
+                        <div class="details"><h3>Coke</h3><p>Ice Cold</p></div>
+                        <div class="food-footer">
+                            <span class="price">₱50</span>
+                            <button class="add-btn" onclick="event.stopPropagation(); addToCart(event, 'Coke', 50, 'Images/coke.jpg')">+</button>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <h3>Coke</h3>
+                        <p>Classic refreshing Coca-Cola served with plenty of ice—the perfect burger companion.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <div class="cart-sidebar">
+        <div class="cart-header">
+            <h2>Your <span>Cart</span></h2>
+            <label for="cart-toggle" class="close-cart"><i class="fas fa-times"></i></label>
+        </div>
+        <div class="cart-body" id="cart-sidebar-list">
+            <p class="empty-msg">Cart is empty</p>
+        </div>
+        <div class="cart-footer">
+            <div class="total">Total: <span id="sidebar-total-amount">₱0</span></div>
+            <button class="btn-checkout" onclick="location.href='cart.html'">Checkout</button>
+        </div>
+    </div>
+    
+    <label for="cart-toggle" class="cart-overlay"></label>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
